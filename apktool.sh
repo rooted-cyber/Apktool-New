@@ -30,7 +30,6 @@ Decompile () {
 		clear
 		printf "\n\033[92m Successfully Recompiled .apk in /sdcard/Apktool\n"
 		style
-		fi
 		
 		}
 		
@@ -69,6 +68,10 @@ setup () {
 	cp -f app $PREFIX/bin
 	chmod 777 $PREFIX/bin/app
 	printf "\n\n \033[92m Now you can use this command :- app"
+	echo
+	printf "\033[96m Press enter to start apktool menu"
+	read
+	start_apktool
 	}
 clear
 echo -e -n "\033[92m	 Dow you want to setup\033[91m (\033[96m y/n\033[91m) "
