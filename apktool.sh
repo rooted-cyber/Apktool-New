@@ -30,6 +30,7 @@ Decompile () {
 		clear
 		printf "\n\033[92m Successfully Recompiled .apk in /sdcard/Apktool\n"
 		style
+		fi
 		
 		}
 		
