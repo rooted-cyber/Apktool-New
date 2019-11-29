@@ -19,16 +19,15 @@ Decompile () {
 		echo -e -n "\033[92m Enter decompiled folder name :- "
 		read f
 		if [ ! -z $f ];then
-		apktool b $f $HOME/new.apk
-		echo -e -n "\033[92m Enter you decompile apk name ( without .apk ) :- "
-		fi
-		read fa
-		if [ ! -z $fa ];then
-		cd $HOME
-		apksigner -p 12345 keystore $fa.apk new-signer.apk
+		apktool b $f --output new.apk
+		echo
+		sleep 2
+		printf "\033[92m [√] Successfully Recompiled your apk\n\n"
+		printf "\033[96m [-] Now signer your apk......\n\n"
+		apksigner -p 12345 keystore new.apk new-signer.apk
 		cp -f new-signer.apk /sdcard/Apktool
 		clear
-		printf "\n\033[92m Successfully Recompiled .apk in /sdcard/Apktool\n"
+		printf "\n\033[92m Successfully signer your apk in /sdcard/Apktool\n"
 		style
 		fi
 		
