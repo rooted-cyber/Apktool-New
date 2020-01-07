@@ -1,15 +1,38 @@
 Decompile () {
 	clear
  	printf "\n \033[93m Copy .apk in $HOME/Apktool-New\n"
+ 	read
+ 	cd ~/Apktool-New
+ 	if [ -e *.apk ];then
+ 	echo
+ 	else
+ 	printf "\n\n \033[91m [×] Sorry , Not found any .apk in ~/Apktool-New , Try again\n\n"
+ 	printf "Press enter to retry"
+ 	read
+ 	Decompile
+ 	fi
  	cd ~/Apktool-New
  	apktool d *.apk
  	printf "\n \033[93m [√] Success Decompile\n"
+ 	echo
+ 	echo
+ 	echo -e " \033[92m Now decomoiled .apk copying....\n\n"
+ 	sleep 1
+ 	cd ~/Apktool-New
+ 	ls *.apk
+ 	echo
+ 	echo -e -n "\033[93m Enter .apk name "
+ 	read aa
+ 	if [ $aa ];then
+ 	cd ~/Apktool-New
+ 	cp -Rf $aa /sdcard/Apktool-New
  	style
+ 	fi
  	}
  
  Recompile () {
 	clear
-	printf "\n\n \033[93m Recompile .apk please wait....\n"
+	printf "\n\n \033[93m Recompile .apk please wait....\n\n"
 	cd ~/Apktool-New
 	folder
 	}
@@ -19,17 +42,28 @@ Decompile () {
 		echo -e -n "\033[92m Enter decompiled folder name :- "
 		read f
 		if [ ! -z $f ];then
+		cd ~/Apktool-New
+		rm -Rf $f
+		cp -f /sdcard/Apktool-New/$f ~/Apktool-New
 		apktool b $f --output new.apk
 		echo
 		sleep 2
 		printf "\033[92m [√] Successfully Recompiled your apk\n\n"
+		fi
+		cd $PREFIX/bin
+		if [ -e apksigner ];then
+		echo
+		else
+		pkg install apksigner
+		clear
+		fi
 		printf "\033[96m [-] Now signer your apk......\n\n"
+		cd ~/Apktool-New
 		apksigner -p 12345 keystore new.apk new-signer.apk
-		cp -f new-signer.apk /sdcard/Apktool
+		cp -f new-signer.apk /sdcard/Apktool-New
 		clear
 		printf "\n\033[92m Successfully signer your apk in /sdcard/Apktool\n"
 		style
-		fi
 		
 		}
 		
@@ -61,7 +95,7 @@ setup () {
 	apt install wget
 	apt install apksigner
 	termux-setup-storage
-	mkdir /sdcard/Apktool
+	mkdir /sdcard/Apktool-New
 	wget https://github.com/rooted-cyber/upload-apktool/raw/master/apktool_2.3.4_all.deb
 	dpkg -i apktool*
 	clear
@@ -73,10 +107,20 @@ setup () {
 	read
 	start_apktool
 	}
+	cd $PREFIX/bin
+	if [ -e app ];then
+	echo
+	else
+	start_setup
+	fi
+	start_setup () {
+		
 clear
-echo -e -n "\033[92m	 Dow you want to setup\033[91m (\033[96m y/n\033[91m) "
+echo -e -n "\033[92m  Setup Requirements\033[91m (\033[96m y/n\033[91m) "
 read apk
 case $apk in
  y|Y) setup ;;
- n|N) not_setup ;;
+ n|N)exit ;;
  esac
+ }
+start_apktool
