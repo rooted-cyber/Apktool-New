@@ -185,6 +185,7 @@ setup () {
 	else
 	start_setup
 	fi
+	
 	start_setup () {
 		
 clear
@@ -195,4 +196,3 @@ case $apk in
  n|N)exit ;;
  esac
  }
-start_apktool
