@@ -2,7 +2,7 @@ Decompile () {
 	clear
  	printf "\n \033[93m Copy .apk in /sdcard/Apktool-New\n"
  	read
- 	cd ~/sdcard/Apktool-New
+ 	cd /sdcard/Apktool-New
  	if [ -e *.apk ];then
  	echo
  	else
