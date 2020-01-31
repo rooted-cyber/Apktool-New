@@ -6,7 +6,7 @@ Decompile () {
  	if [ -e *.apk ];then
  	echo
  	else
- 	printf "\n\n \033[91m [×] Sorry , Not found any .apk in sdcard/Apktool-New , Try again\n\n"
+ 	printf "\n\n \033[91m [?] Sorry , Not found any .apk in sdcard/Apktool-New , Try again\n\n"
  	printf "Press enter to retry"
  	read
  	Decompile
@@ -15,7 +15,7 @@ Decompile () {
  	cp -f *.apk ~/Apktool-New
  	cd ~/Apktool-New
  	apktool d *.apk
- 	printf "\n \033[93m [√] Success Decompile\n"
+ 	printf "\n \033[93m [?�] Success Decompile\n"
  	echo
  	echo
  	echo -e " \033[92m Now decomoiled .apk copying....\n\n"
@@ -76,7 +76,7 @@ Decompile () {
 		cp -rf /sdcard/Apktool-New/$f ~/Apktool-New
 		apktool b $f --output new.apk
 		else
-		printf "\n\n \033[91m [×] Sorry , Not found $f folder !!\n\n"
+		printf "\n\n \033[91m [?] Sorry , Not found $f folder !!\n\n"
 		printf "Try again !!\n\n"
 		read
 		folder
@@ -84,9 +84,9 @@ Decompile () {
 		echo
 		cd ~/Apktool-New
 		if [ -e new.apk ];then
-		printf "\n\n\033[92m [√] Successfully Recompiled your apk\n\n"
+		printf "\n\n\033[92m [?�] Successfully Recompiled your apk\n\n"
 		else
-		printf "\n\033[91m [×] Not recompiled , any error \n Plaese !! try again\n"
+		printf "\n\033[91m [?] Not recompiled , any error \n Plaese !! try again\n"
 		read
 		folder
 		fi
@@ -118,7 +118,7 @@ Decompile () {
 			cd /sdcard/Apktool-New
 			apksigner -p 12345 keystore $ap new-signer.apk
 			else
-			printf "\n\n \033[91m [×] Sorry , Not found .Apk in /sdcard/Apktool-New\n\n"
+			printf "\n\n \033[91m [?] Sorry , Not found .Apk in /sdcard/Apktool-New\n\n"
 			printf "\n Try again !!\n"
 			read
 			sign_apk
@@ -127,7 +127,7 @@ Decompile () {
 			if [ -e new-signer.apk ];then
 			printf "\n\n\033[92m Successfully signed apk\n\n"
 			else
-			printf "\n\n\033[91m [×] Sorry , Not signed .apk , \n\n"
+			printf "\n\n\033[91m [?] Sorry , Not signed .apk , \n\n"
 			printf "Try again !!\n"
 			read
 			sign_apk
@@ -179,20 +179,20 @@ setup () {
 	read
 	start_apktool
 	}
-	cd $PREFIX/bin
-	if [ -e app ];then
-	echo
-	else
-	start_setup
-	fi
-	
-	start_setup () {
+start_setup () {
 		
 clear
 echo -e -n "\033[92m  Setup Requirements\033[91m (\033[96m y/n\033[91m) "
 read apk
 case $apk in
- y|Y) setup ;;
+ y|Y)setup ;;
  n|N)exit ;;
+ *)start_setup ;;
  esac
  }
+cd $PREFIX/bin
+        if [ -e app ];then
+        echo
+        else
+        start_setup
+        fi
