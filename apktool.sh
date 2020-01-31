@@ -193,7 +193,7 @@ case $apk in
  }
 cd $PREFIX/bin
         if [ -e app ];then
-        echo
+        start_apktool
         else
         start_setup
         fi

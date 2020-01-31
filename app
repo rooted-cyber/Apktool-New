@@ -11,11 +11,16 @@ ins () {
 	no () {
 		toilet -f mono12 -F metal Thanx
 		}
-ap () {cd ~
+ap () {
+	cd ~
 if [ -e Apktool-New ];then
 cd ~/Apktool-New
 bash apktool.sh
 else
+ins_else
+fi
+}
+ins_else () {
 printf "\n\n\033[91m [กั] Apktool-New is not installed .\n"
 printf "\n \033[92m Install it ? \033[96m(\033[97mY/N\033[96m)  "
 read a
