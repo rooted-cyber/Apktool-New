@@ -168,14 +168,15 @@ setup () {
 	apt install apksigner
 	termux-setup-storage
 	mkdir /sdcard/Apktool-New
+	cd ~/Apktool-New
 	wget https://github.com/rooted-cyber/upload-apktool/raw/master/apktool_2.3.4_all.deb
 	dpkg -i apktool*
 	clear
 	cp -f app $PREFIX/bin
 	chmod 777 $PREFIX/bin/app
-	printf "\n\n \033[92m Now you can use this command :- app"
+	printf "\n\n \033[92m [กิ] Now you can use this command :- app\m"
 	echo
-	printf "\033[96m Press enter to start apktool menu"
+	printf "\033[96m [กิ] Press enter to start apktool menu"
 	read
 	start_apktool
 	}
